@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>iframe</h2>
+  <img src="/qrcode.png"/>
+  <div id="innerdiv"/>
+  <script type="text/javascript" src="/assets/js/jquery-1.8.3.js"/>
+  <script type="text/javascript">
+    var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+    // Listen to message from child window
+    eventer(messageEvent,function(e) {
+      console.log('innerwindow received message!:  ',e.data);
+      document.getElementById("innerdiv").appendChild(document.createElement("br"));
+      document.getElementById("innerdiv").appendChild(document.createTextNode(e.data));
+    },false);
+    function test(){
+      parent.postMessage("test","http://lightningclient:8000/");
+    };
+
+    (function poll(){
+        $.ajax({ url: "server", success: function(data){
+            //Update your dashboard gauge
+            $("#innerdiv").text(data.value);
+
+        }, dataType: "json", complete: poll, timeout: 30000 });
+    })();
+  </script>
+  <input type="button" value="test" onclick="test();"/>
+</body>
+</html>

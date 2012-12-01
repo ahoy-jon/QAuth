@@ -1,0 +1,8 @@
+<%@ var body: String = "Custom Layout" %>
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+
+            <%= unescape(body) %>
+    </body>
+</html>
