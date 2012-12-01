@@ -1,19 +1,6 @@
 #do(layout("layout.ssp"))
 
-<h1>Bookmarks</h1>
-
-powered by
-<ul>
-    <li>Unfiltered</li>
-    <li>Scalate</li>
-    <li>ScalaQuery</li>
-    <li>Twitter Bootstrap</li>
-    <li>ahoy</li>
-    <li><a href="/formAuth">formAuth</a></li>
-</ul>
-
-
-<img src="qrcode.png" />
+<a href="./prez">prez</a>
 
 #end
 

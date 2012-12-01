@@ -1,2 +1,2 @@
-package kinoplaner
+package lauth
 

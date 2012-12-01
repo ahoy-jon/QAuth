@@ -1,20 +1,34 @@
+<%@ var forcedChallenge: String = "abc" %>
+
 #do(layout("layout.ssp"))
+<<<<<<< HEAD
+<%@ var challenge: String %>
+	<div id="dynamic"/>
+<<<<<<< HEAD
+	<iframe src="/formAuth?challenge=${challenge}" id="innerframe" height="500px" width="500px"></iframe>
+=======
+=======
+	<div id="dynamic"></div>
+>>>>>>> ada2bb4... alphagen
+	<iframe src="/formAuth?challenge=${forcedChallenge}" id="innerframe" height="500px" width="500px"></iframe>
+>>>>>>> 053f165... freeze
+	<input type="button" value="toinner" onclick="toinner();"/>
+	<script type="text/javascript">
+// Create IE + others compatible event handler
+var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+var eventer = window[eventMethod];
+var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
 
-<h1>Bookmarks</h1>
-
-powered by
-<ul>
-    <li>Unfiltered</li>
-    <li>Scalate</li>
-    <li>ScalaQuery</li>
-    <li>Twitter Bootstrap</li>
-    <li>ahoy</li>
-    <li><a href="/formAuth">formAuth</a></li>
-</ul>
-
-
-<img src="qrcode.png" />
-
+// Listen to message from child window
+eventer(messageEvent,function(e) {
+	console.log('parent received message!:  ',e.origin,e.data);
+    document.getElementById("dynamic").appendChild(document.createElement("br"));
+    var userdata=JSON.parse(e.data);
+    document.getElementById("dynamic").innerHTML="You are logged in as : <br/><ul><li>"+userdata.name+"</li><li>"+userdata.email+"</li></ul>"));
+},false);
+function toinner(){
+	var win=document.getElementById("innerframe").contentWindow;
+	win.postMessage("test parent",'*');
+}
+</script>
 #end
-
-

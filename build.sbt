@@ -1,3 +1,8 @@
+import com.typesafe.startscript.StartScriptPlugin
+
+seq(StartScriptPlugin.startScriptForClassesSettings: _*)
+
+
 organization := "com.example"
 
 name := "kplaner"

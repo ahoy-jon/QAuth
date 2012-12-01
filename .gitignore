@@ -1,0 +1,7 @@
+project
+target
+.idea
+.idea_modules
+.DS_Store
+*~
+sbt-launch-0.12.1.jar
